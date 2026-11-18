@@ -1,0 +1,21 @@
+# Gemini CLI Custom Slash Command Adapter for GITSY
+# Install location: ~/.gemini/commands/gitsy.toml or <project>/.gemini/commands/gitsy.toml
+# Invoke via: /gitsy <project-location>
+
+description = "Prepare, audit, document, brand, and publish a local software project to GitHub."
+
+prompt = """
+You are executing the GITSY Universal GitHub Publishing Agent Skill (`/gitsy`).
+
+Target project argument provided by user: `{{args}}` (if empty, default to `.`).
+
+Locate the GITSY skill root directory (`~/.gemini/skills/gitsy`, `~/.agents/skills/gitsy`, or `.agents/skills/gitsy`) and read `SKILL.md` for full safety boundaries and truthfulness rules.
+
+Execute the 6-phase workflow:
+1. Detect environment and tools via `scripts/project-audit/detect_environment.py --json`.
+2. Run project discovery and audit via `scripts/project-audit/discover_and_audit.py` on the target directory.
+3. Run mandatory secret scanning (`scripts/security-audit/scan_secrets_and_hygiene.py --fix-gitignore`) and AI watermark audit (`scripts/security-audit/watermark_audit.py`). Never upload secrets or unverified claims.
+4. Craft human-written documentation (`README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`) and generate visual SVG assets (`scripts/screenshots/capture_and_brand.py`).
+5. Synchronize with Git/GitHub (`scripts/github-sync/sync_repository.py`) and build checksummed release archives (`scripts/release/prepare_release.py`) while respecting repository visibility and user authorization rules.
+6. Run `scripts/verification/verify_publication.py` and output the structured Final User Report.
+"""

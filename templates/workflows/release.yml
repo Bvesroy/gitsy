@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to release (e.g. v1.2.3)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish release
+    runs-on: {{RELEASE_OS}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up runtime
+        uses: {{SETUP_ACTION}}
+        with:
+{{SETUP_ARGS}}
+
+      - name: Install dependencies
+        run: {{INSTALL_CMD}}
+
+      - name: Build artifacts
+        run: {{BUILD_CMD}}
+
+      - name: Test artifacts
+        run: {{TEST_CMD}}
+
+{{PACKAGE_STEP}}
+
+      - name: Generate checksums
+        run: |
+          if compgen -G "{{ARTIFACT_GLOB}}" > /dev/null; then
+            shasum -a 256 {{ARTIFACT_GLOB}} > SHA256SUMS.txt || sha256sum {{ARTIFACT_GLOB}} > SHA256SUMS.txt
+            cat SHA256SUMS.txt
+          else
+            echo "No artifacts matched {{ARTIFACT_GLOB}}" >&2
+            exit 1
+          fi
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --notes-file RELEASE_NOTES.md \
+            {{ARTIFACT_GLOB}} SHA256SUMS.txt
