@@ -1,5 +1,7 @@
 # GITSY (`/gitsy`)
 
+[![selftest](https://github.com/Bvesroy/gitsy/actions/workflows/selftest.yml/badge.svg)](https://github.com/Bvesroy/gitsy/actions/workflows/selftest.yml)
+
 > Universal GitHub publishing, repository engineering, security auditing, visual presentation, and release automation agent skill.
 
 GITSY takes any local software project and turns its GitHub repository into an honest, well-presented, security-verified open-source or private repository. It merges the multi-agent swarm orchestration and visual branding engine of `/gitu` with the atomic Unix-style tooling, sandboxed execution, and formal G1–G8 quality gates of `/gitup`.
