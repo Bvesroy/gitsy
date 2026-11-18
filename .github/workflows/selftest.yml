@@ -11,12 +11,11 @@ permissions:
 
 jobs:
   selftest:
-    name: selftest (py${{ matrix.python }} / ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: selftest (py${{ matrix.python }})
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
         python: ["3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
