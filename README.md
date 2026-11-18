@@ -19,11 +19,11 @@ GITSY takes any local software project and turns its GitHub repository into an h
 2. **Security & Hygiene Hardening**
    - Redacts and detects exposed credentials, API keys, tokens, `.env` files, and database dumps in working trees and Git history.
    - Surgically merges stack-specific `.gitignore` rules without wiping existing custom patterns.
-   - Audits and removes self-introduced AI generator watermarks (*"Created by Gemini"*, *"Powered by Claude"*) while strictly safeguarding legal copyright notices and license headers.
+   - Audits and removes self-introduced development-agent signatures while strictly safeguarding legal copyright notices and license headers.
 
 3. **Fact-Driven Documentation & Visual Branding**
-   - Crafts human-written `README.md` documents grounded in verified facts, refusing unpopulated `{{PLACEHOLDER}}` tokens.
-   - Generates production-ready SVG project logos, 1200x630 social preview cards, and module architecture diagrams into `docs/assets/`.
+   - Crafts human-written `README.md` documents grounded in verified facts, and refuses to publish a README that still carries unresolved template tokens.
+   - Generates SVG project logos, 1200x630 social preview cards, and module architecture diagrams into `docs/assets/`.
    - Probes and captures real UI or CLI output transcripts without substituting deceptive mockups.
 
 4. **Multi-Agent Swarm Orchestration**
@@ -164,6 +164,16 @@ GITSY ships with two complementary test suites:
    ```bash
    python3 tests/test_gitsy_e2e.py
    ```
+
+---
+
+## Branding Assets
+
+The repository carries the four SVG assets `capture_and_brand.py` generated from this project's own scan report (`logo.svg`, `social-preview.svg`, `architecture.svg`, `cli-demo.svg` in `docs/assets/`):
+
+![GITSY architecture overview](docs/assets/architecture.svg)
+
+![GITSY social preview](docs/assets/social-preview.svg)
 
 ---
 

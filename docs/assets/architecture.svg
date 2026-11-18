@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-label="gitsy Architecture Overview">
+  <rect width="900" height="260" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="40" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#94a3b8" letter-spacing="1">ARCHITECTURE OVERVIEW (CONCEPTUAL MODULE FLOW)</text>
+
+  <!-- Box 1: Entry Points -->
+  <rect x="40" y="75" width="240" height="135" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="60" y="110" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">1. Entry Points</text>
+  <text x="60" y="140" font-family="ui-monospace, monospace" font-size="13" fill="#38bdf8">Source Modules</text>
+  <text x="60" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">CLI / API / App Interface</text>
+
+  <!-- Arrow 1 -->
+  <line x1="280" y1="142" x2="325" y2="142" stroke="#64748b" stroke-width="2"/>
+  <polygon points="325,137 335,142 325,147" fill="#64748b"/>
+
+  <!-- Box 2: Core Engine & Dependencies -->
+  <rect x="335" y="75" width="240" height="135" rx="12" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="355" y="110" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">2. Core Runtime</text>
+  <text x="355" y="140" font-family="ui-monospace, monospace" font-size="13" fill="#818cf8">Standard Runtime</text>
+  <text x="355" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Domain Logic &amp; Processing</text>
+
+  <!-- Arrow 2 -->
+  <line x1="575" y1="142" x2="620" y2="142" stroke="#64748b" stroke-width="2"/>
+  <polygon points="620,137 630,142 620,147" fill="#64748b"/>
+
+  <!-- Box 3: Verification & Build -->
+  <rect x="630" y="75" width="230" height="135" rx="12" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="650" y="110" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc">3. Quality &amp; Output</text>
+  <text x="650" y="140" font-family="ui-monospace, monospace" font-size="13" fill="#34d399">python3 -m pytest</text>
+  <text x="650" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Verified Build &amp; Artifacts</text>
+</svg>

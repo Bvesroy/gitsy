@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="gitsy Social Preview">
+  <defs>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1f2937" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="640" fill="url(#cardBg)"/>
+  <rect width="1280" height="640" fill="url(#grid)" opacity="0.55"/>
+  <rect x="64" y="64" width="1152" height="512" rx="24" fill="#0f172a" stroke="#334155" stroke-width="2" opacity="0.92"/>
+  <rect x="112" y="116" width="160" height="36" rx="18" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="192" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#38bdf8" text-anchor="middle">v0.1.0</text>
+  <text x="112" y="250" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="72" font-weight="800" fill="#f8fafc">gitsy</text>
+  <text x="112" y="325" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="400" fill="#cbd5e1">Open-source service (Python)</text>
+  <line x1="112" y1="430" x2="1168" y2="430" stroke="#1e293b" stroke-width="2"/>
+  <text x="112" y="490" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" fill="#38bdf8">service (Python)</text>
+  <text x="1168" y="490" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="500" fill="#94a3b8" text-anchor="end">Python • Shell</text>
+</svg>

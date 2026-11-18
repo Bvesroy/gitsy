@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 398" width="820" height="398" role="img" aria-label="CLI Execution Snapshot">
+  <rect width="820" height="398" rx="12" fill="#090d16" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="24" cy="22" r="6" fill="#ef4444"/>
+  <circle cx="44" cy="22" r="6" fill="#f59e0b"/>
+  <circle cx="64" cy="22" r="6" fill="#10b981"/>
+  <text x="410" y="26" font-family="ui-monospace, monospace" font-size="12" fill="#64748b" text-anchor="middle">real-cli-output — bash</text>
+  <line x1="0" y1="42" x2="820" y2="42" stroke="#1e293b" stroke-width="1"/>
+  <text x="28" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#38bdf8">$ python3 scripts/run.py detect_environment.py --json</text>
+  <text x="28" y="82" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">{</text>
+  <text x="28" y="104" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">  &quot;os&quot;: {</text>
+  <text x="28" y="126" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;system&quot;: &quot;Darwin&quot;,</text>
+  <text x="28" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;release&quot;: &quot;27.0.0&quot;,</text>
+  <text x="28" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;machine&quot;: &quot;arm64&quot;,</text>
+  <text x="28" y="192" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;python_version&quot;: &quot;3.15.2&quot;</text>
+  <text x="28" y="214" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">  },</text>
+  <text x="28" y="236" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">  &quot;detected_agent_platforms&quot;: [</text>
+  <text x="28" y="258" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;claude-code&quot;,</text>
+  <text x="28" y="280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;gemini-cli&quot;,</text>
+  <text x="28" y="302" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;opencode&quot;,</text>
+  <text x="28" y="324" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;qwen-code&quot;,</text>
+  <text x="28" y="346" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;kilo-code&quot;,</text>
+  <text x="28" y="368" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e2e8f0">    &quot;agent-skills-standard&quot;</text>
+</svg>

@@ -61,10 +61,27 @@ def generate_social_preview_svg(project_name: str, description: str, app_types: 
 """
 
 
+def _command_strings(raw) -> list[str]:
+    """Flatten a command report to plain command strings.
+
+    ``project_scan.py`` emits ``{"test": [{"cmd": "...", "source": "..."}]}``;
+    ``discover_and_audit.py`` emitted ``{"test": "..."}``.
+    """
+    if isinstance(raw, str):
+        return [raw]
+    out: list[str] = []
+    for item in raw or []:
+        if isinstance(item, str):
+            out.append(item)
+        elif isinstance(item, dict) and item.get("cmd"):
+            out.append(str(item["cmd"]))
+    return out
+
+
 def generate_architecture_svg(project_name: str, entry_points: list, pkg_managers: list, commands: dict) -> str:
-    entries_label = ", ".join(entry_points[:2]) if entry_points else "Source Modules"
-    pkg_label = ", ".join(pkg_managers[:2]) if pkg_managers else "Standard Runtime"
-    test_label = ", ".join(commands.get("test") or ["Verification Suite"])[:32]
+    entries_label = ", ".join(str(e) for e in entry_points[:2]) if entry_points else "Source Modules"
+    pkg_label = ", ".join(str(p) for p in pkg_managers[:2]) if pkg_managers else "Standard Runtime"
+    test_label = ", ".join(_command_strings(commands.get("test")) or ["Verification Suite"])[:32]
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-label="{html.escape(project_name)} Architecture Overview">
   <rect width="900" height="260" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
@@ -97,6 +114,26 @@ def generate_architecture_svg(project_name: str, entry_points: list, pkg_manager
   <text x="650" y="170" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Verified Build &amp; Artifacts</text>
 </svg>
 """
+
+
+def _language_names(raw) -> list[str]:
+    """Normalise a language report to a list of names.
+
+    Accepts the legacy ``{"Python": 78}`` mapping and the shape
+    ``project_scan.py`` emits, ``[{"name": "Python", "share": 77.8}]``.
+    """
+    names: list[str] = []
+    if isinstance(raw, dict):
+        names = [str(k) for k in raw]
+    elif isinstance(raw, list):
+        for item in raw:
+            if isinstance(item, str):
+                names.append(item)
+            elif isinstance(item, dict):
+                name = item.get("name") or item.get("language")
+                if name:
+                    names.append(str(name))
+    return names or ["Software"]
 
 
 def generate_cli_snapshot_svg(command_str: str, output_text: str) -> str:
@@ -138,13 +175,18 @@ def main():
     if args.audit_json and Path(args.audit_json).exists():
         audit = json.loads(Path(args.audit_json).read_text(encoding="utf-8"))
 
-    project_name = audit.get("project_name") or root.name
-    version = audit.get("inferred_version") or "0.1.0"
-    description = audit.get("inferred_description") or ""
-    languages = list((audit.get("languages") or {"Software": 1}).keys())
-    app_types = audit.get("application_types") or ["Software Project"]
+    project_name = audit.get("project_name") or (audit.get("project") or {}).get("name") or root.name
+    version = (audit.get("inferred_version") or (audit.get("project") or {}).get("version")
+               or "0.1.0")
+    description = (audit.get("inferred_description")
+                   or (audit.get("project") or {}).get("description") or "")
+    languages = _language_names(audit.get("languages"))
+    app_types = (audit.get("application_types")
+                 or [t for t in [(audit.get("project") or {}).get("app_type")] if t]
+                 or ["Software Project"])
     entry_points = audit.get("entry_points") or []
-    pkg_managers = audit.get("package_managers") or []
+    pkg_managers = (audit.get("package_managers")
+                    or [p for p in [(audit.get("project") or {}).get("package_manager")] if p])
     commands = audit.get("commands") or {}
 
     created_files = []
